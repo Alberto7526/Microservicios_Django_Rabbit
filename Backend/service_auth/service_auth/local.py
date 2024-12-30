@@ -17,3 +17,5 @@ STATIC_URL = 'static/'
 DATABASES = {
     'default': env.db(),  # Esto usa la variable DATABASE_URL
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
