@@ -7,6 +7,8 @@ from drf_yasg import openapi
 
 from Users.router import router_users
 
+from oauth2_provider import urls as oauth2_urls
+
 
 # for documentation
 
@@ -29,4 +31,5 @@ urlpatterns = [
     path("docs/",schema_view.with_ui("swagger", cache_timeout=0),name="schema-swagger-ui",), # url automatic documentation
     path("redocs/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),# url automatic documentation
     path('api/', include(router_users.urls)),
+    path('o/', include(oauth2_urls)),
 ]
