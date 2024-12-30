@@ -9,3 +9,4 @@ media
 venv
 .dbdata/
 venv_ms
+node_modules
