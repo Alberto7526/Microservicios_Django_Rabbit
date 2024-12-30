@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import permissions
 from Users.serializers import UserSerializer
 from Users.models import User
 from Users.tasks import *
@@ -10,6 +11,7 @@ class UserModelViewSet(ModelViewSet):
     '''
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    #permission_classes = [permissions.IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         name = request.data.get('user_name')

@@ -28,6 +28,8 @@ THIRD_APPS = [
      'rest_framework', 
      'django_celery_results',
      'drf_yasg',
+     'oauth2_provider',
+     'corsheaders',
       
 ]
 
@@ -38,6 +40,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -45,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'service_auth.urls'
@@ -119,3 +123,26 @@ CELERY_TASK_SERIALIZER = 'pickle'
 
 CELERY_RESULT_BACKEND = 'django-db'
 
+# configuración para que el modelusado sea Users
+
+AUTH_USER_MODEL = 'Users.User'
+
+# configuración para AUTH 2.0
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'read': 'Read scope', 
+        'write': 'Write scope', 
+        'groups': 'Access to your groups'
+    }
+}
+
+LOGIN_URL = '/admin/login/'
