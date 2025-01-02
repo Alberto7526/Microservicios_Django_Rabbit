@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   #Django app
   user_service:
@@ -11,12 +10,12 @@ services:
     environment:
       - SECRET_KEY='django-insecure-57&r6sh!owg@tbjgob(dwdw*s9u7(*pnmtq*)dwyzl9ee#*y^@'
       - DEBUG=True
-      - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db:5432/users_db 
+      - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db:5432/users_db
       - CELERY_BROKER_URL=amqp://user:password@rabbitmq:5672//
     depends_on:
       - db
       - redis
-      - rabbitmq 
+      - rabbitmq
     command: >
       bash -c "
       python manage.py makemigrations &&
@@ -24,29 +23,28 @@ services:
       python manage.py migrate oauth2_provider &&
       python manage.py runserver 0.0.0.0:8000
       "
- 
-  
+
   # Database (PostgreSQL)
   db:
-   image: postgres
-   container_name: django_user_postgresql
-   restart: always
-   environment:
+    image: postgres
+    container_name: django_user_postgresql
+    restart: always
+    environment:
       POSTGRES_DB: users_db
       POSTGRES_USER: desarrollo
       POSTGRES_PASSWORD: desa1234*.#rollo
-   ports:
-    - 54322:5432
-   volumes:
+    ports:
+      - 54322:5432
+    volumes:
       - .dbdata:/var/lib/postgresql
-  
+
   # Redis Cache
   redis:
     image: redis
     container_name: django_user_redis
     ports:
       - 6379:6379
-# Celery worker service
+  # Celery worker service
   celery:
     container_name: celery_worker
     build: .
@@ -63,14 +61,14 @@ services:
       - rabbitmq
     ports: []
     command: celery -A service_auth worker -l INFO
-  
- # RabbitMQ
+
+  # RabbitMQ
   rabbitmq:
     image: "rabbitmq:management"
     container_name: rabbitmq
     ports:
-      - "15672:15672"  # Puerto de acceso a la interfaz de administración
-      - "5672:5672"    # Puerto para la comunicación de RabbitMQ
+      - "15672:15672" # Puerto de acceso a la interfaz de administración
+      - "5672:5672" # Puerto para la comunicación de RabbitMQ
     environment:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
