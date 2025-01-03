@@ -34,7 +34,7 @@ THIRD_APPS = [
 ]
 
 LOCAL_APPS = [
-    'Users'
+    'Registers'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + LOCAL_APPS
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     
 ]
 
-ROOT_URLCONF = 'service_auth.urls'
+ROOT_URLCONF = 'service_logs.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'service_auth.wsgi.application'
+WSGI_APPLICATION = 'service_logs.wsgi.application'
 
 
 # Password validation
@@ -123,9 +123,6 @@ CELERY_TASK_SERIALIZER = 'pickle'
 
 CELERY_RESULT_BACKEND = 'django-db'
 
-# configuración para que el modelusado sea Users
-
-AUTH_USER_MODEL = 'Users.User'
 
 # configuración para AUTH 2.0
 REST_FRAMEWORK = {
