@@ -55,14 +55,11 @@ services:
       - rabbitmq
     command: >
       bash -c "
-      python manage.py makemigrations &&
-      python manage.py migrate &&
-      python manage.py migrate oauth2_provider &&
-      python manage.py shell -c 'from Users.models import User; 
-      user = User(username=\"desarrollo\", email=\"desarrollo.software@robotica.com.co\", user_name=\"Desarrollo\", user_last_name=\"Usuario\", user_enable=True, user_lock=False, is_staff=True); 
-      user.set_password(\"Des4rr0ll0*\");
-      user.save()' &&
-      python manage.py runserver 0.0.0.0:8000
+        python manage.py makemigrations &&
+        python manage.py migrate &&
+        python manage.py migrate oauth2_provider &&
+        python manage.py shell < create_user.py &&
+        python manage.py runserver 0.0.0.0:8000
       "
 
   # Database auth (PostgreSQL)
@@ -75,7 +72,7 @@ services:
       POSTGRES_USER: desarrollo
       POSTGRES_PASSWORD: desa1234*.#rollo
     ports:
-      - 54322:5432
+      - 54324:5432
     volumes:
       - .dbdata_auth:/var/lib/postgresql
 
