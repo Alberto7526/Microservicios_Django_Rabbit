@@ -1,0 +1,1 @@
+mkcert www.midominio.local.co
