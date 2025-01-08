@@ -35,26 +35,27 @@ const Form_init = () => {
             <div className="flex justify-between w-full py-4 text-[#44403C]">
               <div className="mr-24 accent-[#8C1919]">
                 <input type="checkbox" name="ch" id="ch" className="mr-2" />
-                <span className="text-md">Remember for 30 days</span>
+                <span className="text-md">Recordar por 30 días</span>
               </div>
               <span className="font-bold text-md text-[#8C1919]">
-                Forgot password
+                Olvidé mi contraseña
               </span>
             </div>
-            <button className="w-full bg-[#8C1919] text-white p-2 rounded-lg mb-6 hover:bg-[#8C1919] hover:bg-opacity-90 hover:text-white hover:border hover:border-gray-300 font-semibold">
+            <button className="w-full bg-[#8C1919] text-white p-2 rounded-lg mb-6 hover:bg-[#480707] hover:bg-opacity-90 hover:text-white hover:border hover:border-gray-300 font-semibold">
               Iniciar Sesión
             </button>
+            <div className="text-center text-gray-400">
+              <span className="font-semibold text-[#44403C]">Ó</span>
+            </div>
+            <div className="py-2"></div>
             <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-[#8C1919] hover:bg-opacity-90 hover:text-white">
               <img
-                src="google.svg"
-                alt="Google Icon"
+                src="Microsoft_logo.svg"
+                alt="Microsoft Icon"
                 className="w-6 h-6 inline mr-2"
               />
-              Sign in with Google
+              Iniciar sesión con AD
             </button>
-            <div className="text-center text-gray-400">
-              <span className="font-bold text-[#8C1919]">Sign up for free</span>
-            </div>
           </div>
           <div className="relative">
             <div
