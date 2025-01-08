@@ -1,78 +1,97 @@
 const Form_init = () => {
   return (
     <>
-      <h2
-        className="mt-10 text-center font-semibold tracking-tight"
-        style={{
-          fontSize: "40px",
-          color: "#8C1919",
-          fontFamily: "Titillium Web",
-        }}
-      >
-        Bienvenido
-      </h2>
-      <form>
-        <div>
-          <label
-            className="mt-10 text-center font-bold tracking-tight"
-            style={{
-              fontSize: "20px",
-              color: "#8C1919",
-              fontFamily: "Titillium Web",
-              fontWeight: "bold",
-            }}
-          >
-            Usuario
-          </label>
-          <div className="w-72">
-            <input
-              type="password"
-              name="password"
-              required
-              className="block w-100 bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-red-700 sm:text-sm/6"
-              style={{ borderRadius: "5px" }}
-              placeholder="Ingresar contraseña"
-            />
+      <div className="flex items-center justify-center min-h-screen bg-[#edeef1] border border-[#d7dbe0]">
+        <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
+          <div className="flex flex-col justify-center p-2 md:p-11">
+            <span className="mb-3 text-4xl text-[#8C1919] text-center font-bold">
+              Bienvenido
+            </span>
+            <span className="text-[#44403C] mb-3 font-semibold text-center">
+              Por favor ingresar tu correo
+            </span>
+            <div className="py-4">
+              <span className="mb-2 text-md text-[#8C1919] font-semibold">
+                Email
+              </span>
+              <input
+                type="text"
+                className="w-full p-2 border border-gray-300  hover:border-red-700 focus:border-red-700 rounded-md placeholder:font-light placeholder:text-red-700"
+                name="email"
+                id="email"
+              />
+            </div>
+            <div className="py-2">
+              <span className="mb-2 text-md text-[#8C1919] font-semibold">
+                Contraseña
+              </span>
+              <input
+                type="password"
+                name="pass"
+                id="pass"
+                className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light  hover:border-red-700 focus:border-red-700 placeholder:text-gray-500"
+              />
+            </div>
+            <div className="flex justify-between w-full py-4 text-[#44403C]">
+              <div className="mr-24 accent-[#8C1919]">
+                <input type="checkbox" name="ch" id="ch" className="mr-2" />
+                <span className="text-md">Recordar por 30 días</span>
+              </div>
+              <span className="font-bold text-md text-[#8C1919]">
+                Olvidé mi contraseña
+              </span>
+            </div>
+            <button className="w-full bg-[#8C1919] text-white p-2 rounded-lg mb-6 hover:bg-[#480707] hover:bg-opacity-90 hover:text-white hover:border hover:border-gray-300 font-semibold">
+              Iniciar Sesión
+            </button>
+            <div className="text-center text-gray-400">
+              <span className="font-semibold text-[#44403C]">Ó</span>
+            </div>
+            <div className="py-2"></div>
+            <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-[#8C1919] hover:bg-opacity-90 hover:text-white">
+              <img
+                src="Microsoft_logo.svg"
+                alt="Microsoft Icon"
+                className="w-6 h-6 inline mr-2"
+              />
+              Iniciar sesión con AD
+            </button>
+          </div>
+          <div className="relative">
+            <div
+              className="container-fluid d-flex flex-column align-items-center justify-content-center"
+              style={{
+                backgroundColor: "#8C1919",
+                borderRadius: "60px 16px 16px 60px",
+                padding: "10px",
+                width: "auto",
+                height: "auto",
+                display: "block",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src="/logo_blanco.png"
+                alt="distrital_log"
+                className="img-fluid"
+                style={{
+                  maxWidth: "100%",
+                  height: "300px",
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              />
+              <img
+                src="/sede1.png"
+                alt="sede1"
+                className="img-fluid"
+                style={{ maxWidth: "720px", height: "auto", marginTop: "80px" }}
+              />
+            </div>
           </div>
         </div>
-        <br />
-        <div>
-          <label
-            className="mt-10 text-center font-bold tracking-tight"
-            style={{
-              fontSize: "20px",
-              color: "#8C1919",
-              fontFamily: "Titillium Web",
-              fontWeight: "bold",
-            }}
-          >
-            Contraseña
-          </label>
-          <div className="mt-2">
-            <input
-              type="password"
-              name="password"
-              required
-              className="block w-100 bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              style={{ borderRadius: "5px" }}
-              placeholder="Ingresar contraseña"
-            />
-          </div>
-        </div>
-        <div className="mt-10"></div>
-        <div>
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-normal text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
-            style={{
-              backgroundColor: "#8C1919",
-              borderRadius: "5px",
-            }}
-          >
-            Continuar
-          </button>
-        </div>
-      </form>
+      </div>
     </>
   );
 };
