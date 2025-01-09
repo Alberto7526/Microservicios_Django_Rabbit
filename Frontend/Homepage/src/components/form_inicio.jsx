@@ -1,6 +1,6 @@
 const Form_init = () => {
   return (
-    <>
+    <div className="dark">
       <div className="flex items-center justify-center min-h-screen bg-[#edeef1] border border-[#d7dbe0]">
         <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           <div className="flex flex-col justify-center p-2 md:p-11">
@@ -59,9 +59,8 @@ const Form_init = () => {
           </div>
           <div className="relative">
             <div
-              className="container-fluid d-flex flex-column align-items-center justify-content-center"
+              className="container-fluid d-flex flex-column align-items-center justify-content-center bg-[#8C1919]"
               style={{
-                backgroundColor: "#8C1919",
                 borderRadius: "60px 16px 16px 60px",
                 padding: "10px",
                 width: "auto",
@@ -92,7 +91,7 @@ const Form_init = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
