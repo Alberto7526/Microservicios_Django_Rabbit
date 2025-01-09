@@ -45,7 +45,9 @@ const Form_init = () => {
               Iniciar Sesión
             </button>
             <div className="text-center text-gray-400 dark:text-gray-500">
-              <span className="font-semibold text-[#44403C] dark:text-[#878787]">Ó</span>
+              <span className="font-semibold text-[#44403C] dark:text-[#878787]">
+                Ó
+              </span>
             </div>
             <div className="py-2"></div>
             <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6 hover:bg-[#8C1919] hover:bg-opacity-90 hover:text-white dark:bg-[#242424] dark:hover:bg-[#454545] dark:text-white">
@@ -96,3 +98,4 @@ const Form_init = () => {
 };
 
 export default Form_init;
+
