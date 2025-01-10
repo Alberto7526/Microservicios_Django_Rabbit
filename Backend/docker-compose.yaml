@@ -49,6 +49,7 @@ services:
       - DEBUG=True
       - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db_auth:5432/users_db
       - CELERY_BROKER_URL=amqp://user:password@rabbitmq:5672//
+    
     depends_on:
       - db_auth
       - redis
@@ -61,12 +62,13 @@ services:
         python manage.py shell < create_user.py &&
         python manage.py runserver 0.0.0.0:8000
       "
+    
 
   # Database auth (PostgreSQL)
   db_auth:
     image: postgres
     container_name: db_user_postgresql
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: users_db
       POSTGRES_USER: desarrollo
@@ -90,31 +92,44 @@ services:
       - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db_logs:5432/logs_db 
     depends_on:
       - db_logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.log_service.rule=Host(`logservice.midominio.local`)"
+    
     command: >
       bash -c "
       python manage.py makemigrations &&
       python manage.py migrate &&
-      python manage.py migrate oauth2_provider &&
       python manage.py runserver 0.0.0.0:8001
       "
+    
+    networks:
+      - traefik-net
+    
   
   # Database logs (PostgreSQL)
   db_logs:
-   image: postgres
-   container_name: db_logs_postgresql
-   restart: always
-   environment:
+    image: postgres
+    container_name: db_logs_postgresql
+    restart: always
+    environment:
       POSTGRES_DB: logs_db
       POSTGRES_USER: desarrollo
       POSTGRES_PASSWORD: desa1234*.#rollo
-   ports:
-    - 54323:5432
-   volumes:
+    ports:
+     - 54323:5432
+    volumes:
       - .dbdata_logs:/var/lib/postgresql
-
-
+    networks:
+      - traefik-net
 
 volumes:
   .dbdata_auth:
   .dbdata_logs:
   rabbitmq_data:
+
+networks:
+  traefik-net: 
+    external: true
+
+      
