@@ -28,7 +28,6 @@ THIRD_APPS = [
      'rest_framework', 
      'django_celery_results',
      'drf_yasg',
-     'oauth2_provider',
      'corsheaders',
       
 ]
@@ -125,21 +124,6 @@ CELERY_RESULT_BACKEND = 'django-db'
 
 
 # configuración para AUTH 2.0
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
-}
 
-OAUTH2_PROVIDER = {
-    'SCOPES': {
-        'read': 'Read scope', 
-        'write': 'Write scope', 
-        'groups': 'Access to your groups'
-    }
-}
 
 LOGIN_URL = '/admin/login/'

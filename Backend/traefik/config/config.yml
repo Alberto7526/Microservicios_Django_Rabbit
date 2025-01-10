@@ -1,0 +1,15 @@
+http:
+  routers:
+    traefik:
+      rule: "Host(`traefik.midominio.local`)"
+      service: "api@internal" 
+      tls:
+        domains:
+          - main: "midominio.local"
+            sans:
+              - "*.midominio.local"
+
+tls:
+  certificates:
+    - certFile: "/etc/traefik/certs/midominio.local.pem"
+      keyFile: "/etc/traefik/certs/midominio.local-key.pem"
