@@ -48,11 +48,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.proxy.ProxyMiddleware',
     
 ]
 
-ROOT_URLCONF = 'service_auth.urls'
+ROOT_URLCONF = 'auth.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'service_auth.wsgi.application'
+WSGI_APPLICATION = 'auth.wsgi.application'
 
 
 # Password validation
