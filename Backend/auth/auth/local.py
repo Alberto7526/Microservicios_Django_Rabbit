@@ -4,12 +4,16 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'www.midominio.local.co', 
-    'log_service.localhost'
+    'localhost',
+    'auth.ingeprueba.localhost',
+    'ingeprueba.localhost'
 ]
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+CSRF_TRUSTED_ORIGINS = [
+    'https://auth.ingeprueba.localhost',
+    'http://auth.ingeprueba.localhost',  # si también usas HTTP
+]
+
 
 STATIC_URL = 'static/'
 

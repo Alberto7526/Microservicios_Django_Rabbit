@@ -1,0 +1,24 @@
+services:
+# RabbitMQ
+  rabbitmq:
+    image: "rabbitmq:management"
+    container_name: rabbitmq
+    ports:
+      - "15672:15672" # Puerto de acceso a la interfaz de administración
+      - "5672:5672" # Puerto para la comunicación de RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - red
+
+volumes:
+  rabbitmq_data:
+
+
+networks:
+  red:
+    external: true
+    driver: bridge

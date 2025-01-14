@@ -1,0 +1,58 @@
+services:
+  
+  # Celery worker service
+  celery:
+    container_name: celery_worker
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - C_FORCE_ROOT=true
+      - SECRET_KEY='django-insecure-57&r6sh!owg@tbjgob(dwdw*s9u7(pnmtq)dwyzl9ee#*y^@'
+      - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db_auth:5432/users_db
+      - CELERY_BROKER_URL=amqp://user:password@rabbitmq:5672//
+    ports: []
+    networks:
+      - red
+    command: celery -A auth worker -l INFO
+
+  
+  #service AUTH 
+  auth:
+    container_name: auth
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      - SECRET_KEY='django-insecure-57&r6sh!owg@tbjgob(dwdw*s9u7(*pnmtq*)dwyzl9ee#*y^@'
+      - DEBUG=True
+      - DATABASE_URL=postgres://desarrollo:desa1234*.#rollo@db_auth:5432/users_db
+      - CELERY_BROKER_URL=amqp://user:password@rabbitmq:5672//
+    
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.auth.rule=Host(`auth.ingeprueba.localhost`)"
+        - "traefik.http.routers.auth.tls=true"
+        - "traefik.http.services.auth.loadbalancer.server.port=8000"
+        - "traefik.docker.network=red"
+        - "traefik.http.middlewares.latency-check.circuitbreaker.expression=LatencyAtQuantileMS(50.0) > 100"
+        - "traefik.http.services.auth.loadbalancer.server.scheme=http"
+
+    command: >
+      bash -c "
+        python manage.py makemigrations &&
+        python manage.py migrate &&
+        python manage.py migrate oauth2_provider &&
+        python manage.py shell < create_user.py &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+    networks:
+      - red
+
+
+networks:
+  red:
+    external: true
+    driver: bridge
