@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: desarrollo
       POSTGRES_PASSWORD: desa1234*.#rollo
     ports:
-      - 54324:5432
+      - 5433:5432
     volumes:
       - .dbdata_auth:/var/lib/postgresql
     networks:
