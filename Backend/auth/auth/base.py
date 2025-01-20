@@ -138,11 +138,17 @@ REST_FRAMEWORK = {
 }
 
 OAUTH2_PROVIDER = {
+    'OAUTH2_BACKEND': 'users.authentication.EmailOAuth2Backend',
     'SCOPES': {
         'read': 'Read scope', 
         'write': 'Write scope', 
         'groups': 'Access to your groups'
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'Users.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend', 
+)
 
 LOGIN_URL = '/admin/login/'
