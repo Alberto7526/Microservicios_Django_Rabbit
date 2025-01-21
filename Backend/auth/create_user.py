@@ -10,7 +10,8 @@ except ObjectDoesNotExist:
         user_last_name="Usuario", 
         user_enable=True, 
         user_lock=False, 
-        is_staff=True
+        is_staff=True,
+        is_superuser=True
         )
     user.set_password("1234*")
     user.save()
